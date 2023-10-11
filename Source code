@@ -1,0 +1,105 @@
+#include<REGX51.h>
+#include<intrins.h> // for using _nop_() function
+sfr16 DPTR =0x82;
+sbit trig=P1^0;
+sbit relay=P1^3;
+sbit vibrator=P0^0;
+sbit water=P1^2;
+#define LCDPORT P2
+sbit _RS=P0^5;
+sbit _RW=P0^6;
+sbit _E=P0^7;
+#include "lcd.h"
+unsigned int target_range=0x00;
+void delay1(int val)
+{
+int i,j,k;
+for(i=0;i<=val;i++)
+{
+for(j=0;j<=0x55;j++)
+{
+for(k=0;k<=0x99;k++)
+{
+}
+}
+}
+}
+void send_pulse(void) //to generate 10 microseconds delay
+{
+TH0=0x00;TL0=0x00;
+trig=1;
+_nop_();_nop_();_nop_();_nop_();_nop_();
+_nop_();_nop_();_nop_();_nop_();_nop_();
+_nop_();_nop_();_nop_();_nop_();_nop_();
+_nop_();_nop_();_nop_();_nop_();_nop_();
+trig=0;
+}
+unsigned char get_range(void)
+{
+unsigned char range;
+send_pulse();
+while(!INT0); // in sake of these lines you can generate a
+delay of 40 Milli seconds=40000 micro
+while (INT0); // seconds
+DPH=TH0;DPL=TL0;
+TH0=0xFF;TL0=0xFF;
+if(DPTR<35000) //actually you need to use 38000 but the
+sensor may not work at higher levels
+range=DPTR/59;
+else
+range=0; // indicates that there is no obstacle in front
+of the sensor
+return range;
+}
+void process(int dat,int add)
+{
+int i,j,k;
+i=dat/100;
+j=dat%100;
+k=j%10;
+j=j/10;
+i=i|0x30;
+j=j|0x30;
+k=k|0x30;
+lcd_com(add);
+lcd_data(i);
+lcd_data(j);
+lcd_data(k);
+}
+void main()
+{
+relay=0;
+TMOD=0x09; //timer0 in 16 bit mode with gate enable
+TR0=1; //timer run enabled
+TH0=0x00;
+TL0=0x00;
+P1=0xff;
+P3|=0x04; //setting pin P3.2
+target_range=0;
+lcd_init();
+lcd_com(0x01);
+lcd_com(0x0c);
+lcd_com(0x80);
+lcd_puts("Smart Cane ");
+vibrator=0;
+delay1(2);
+vibrator=1;
+while(1)
+{
+delay1(1);
+lcd_com(0xc0);
+lcd_puts("Range: ");
+process(target_range,0xca);
+target_range=get_range();
+if(target_range!=0 && target_range<=30)
+{
+relay=0;
+}
+else
+relay=1;
+if(water==0)
+{lcd_com(0x8F);lcd_data(' ');vibrator=1;}
+if(water==1)
+{lcd_com(0x8F);lcd_data('W');vibrator=0;}
+}
+}
