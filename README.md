@@ -22,3 +22,17 @@ The Smart Stick for Blind is a low-cost, portable, and easy-to-use device that h
 ## Conclusion
 
 The Smart Stick for Blind project demonstrates the potential of technology to improve the lives of visually impaired people. It provides a proof-of-concept for a low-cost and effective device that can be further developed and customized to meet the needs of different users and environments.
+
+## Project Result 
+
+![Result 1](https://github.com/Aarthi-NA/Smart-stick-MCU8051/assets/136803822/c64b726b-0cd4-4901-9ca1-c33bb32dd765)
+
+![Result 2](https://github.com/Aarthi-NA/Smart-stick-MCU8051/assets/136803822/444b924a-1992-4cd5-9945-c605e8ee460f)
+
+![Result 3](https://github.com/Aarthi-NA/Smart-stick-MCU8051/assets/136803822/4b4ec79a-c9bb-4271-814c-968322beaa39)
+
+
+
+
+
+
