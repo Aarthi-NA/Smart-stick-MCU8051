@@ -1,6 +1,6 @@
 # Smart-stick-MCU8051
 
-# Smart Stick for Blind
+Smart Stick for Blind using Microcontroller 8051
 
 The Smart Stick for Blind is a low-cost, portable, and easy-to-use device that helps visually impaired people navigate their surroundings more safely and independently. The stick uses ultrasonic sensors to detect obstacles and water sensors to detect hazards in the user's path. It provides feedback through vibrations and sounds and can be customized to suit the user's preferences. The project is implemented using an 8051 microcontroller and various electronic components. The source code is written in C language using the MCU 8051 IDE.
 
