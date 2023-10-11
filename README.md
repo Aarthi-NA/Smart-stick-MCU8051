@@ -22,7 +22,3 @@ The Smart Stick for Blind is a low-cost, portable, and easy-to-use device that h
 ## Conclusion
 
 The Smart Stick for Blind project demonstrates the potential of technology to improve the lives of visually impaired people. It provides a proof-of-concept for a low-cost and effective device that can be further developed and customized to meet the needs of different users and environments.
-
-## Reference
-
-The Smart Stick for Blind project was developed by undergraduate students in Electronics and Communication Engineering.
